@@ -12,5 +12,5 @@ O projeto tem como objetivo controlar as atividades do usuario, Ele pode adicion
 -Controlar o horário de sono do user sendo indicado a ele dormir de 6 a 8 horas por dia.
 
 
-Douglas Vargas.
+## Douglas Vargas.
 
