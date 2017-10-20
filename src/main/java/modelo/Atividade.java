@@ -2,23 +2,34 @@ package modelo;
 
 public class Atividade implements Comparable{
 
+    private String nomeAtividade;
     private String horaIncio;
     private String horaFim;
     private String tipo;
     private Integer hora;
 
 
-    public Integer getHora() {
-        return hora;
-    }
-
-
-    public Atividade(String horaIncio, String horaFim, String tipo) {
+    public Atividade(String nomeAtividade, String horaIncio, String horaFim, String tipo) {
         this.horaIncio = horaIncio;
         this.horaFim = horaFim;
         this.tipo = tipo;
         String aux = horaIncio.substring(0,2);
+        this.nomeAtividade = nomeAtividade;
         this.hora = Integer.parseInt(aux);
+    }
+    public Atividade(){
+
+    }
+
+    public String getNomeAtividade() {
+        return nomeAtividade;
+    }
+
+    public void setNomeAtividade(String nomeAtividade) {
+        this.nomeAtividade = nomeAtividade;
+    }
+    public Integer getHora() {
+        return hora;
     }
 
     public String getHoraIncio() {
@@ -48,7 +59,7 @@ public class Atividade implements Comparable{
 
     @Override
     public String toString(){
-        String s = "Atividade: " + getHoraIncio() + " " +getHoraFim()+ " " +getTipo();
+        String s = "Atividade: " + getNomeAtividade() +  " hora do inicio: " + getHoraIncio() + " hora do fim: " +getHoraFim()+ " tipo de atividade: " +getTipo() + "\n";
         return s;
     }
 

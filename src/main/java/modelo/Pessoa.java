@@ -32,8 +32,18 @@ public class Pessoa {
     public void adicionaAtividadeDia(Atividade atividade){
         atividades.add(atividade);
         Collections.sort(atividades);
-
     }
+    public void removeAtividadeDia(String atividadeRemover){
 
+
+        for (int i = 0 ;i<atividades.size();i++){
+
+            if(atividadeRemover == atividades.get(i).getNomeAtividade()){
+
+                atividades.remove(atividades.get(i));
+            }
+        }
+        Collections.sort(atividades);
+    }
 
 }
