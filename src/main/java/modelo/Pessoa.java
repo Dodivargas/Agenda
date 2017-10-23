@@ -20,6 +20,9 @@ public class Pessoa {
         this.nome = nome;
         atividades = new ArrayList<Atividade>();
     }
+    public Pessoa(){
+        atividades = new ArrayList<Atividade>();
+    }
 
     public String getNome() {
         return nome;
@@ -35,7 +38,6 @@ public class Pessoa {
     }
     public void removeAtividadeDia(String atividadeRemover){
 
-
         for (int i = 0 ;i<atividades.size();i++){
 
             if(atividadeRemover == atividades.get(i).getNomeAtividade()){
@@ -44,6 +46,17 @@ public class Pessoa {
             }
         }
         Collections.sort(atividades);
+    }
+    public void editaAtividade(String atividadeARemover, Atividade atividade){
+
+        for (int i = 0 ;i<atividades.size();i++){
+
+            if(atividadeARemover == atividades.get(i).getNomeAtividade()){
+                atividades.remove(i);
+                atividades.add(i,atividade);
+            }
+        }
+
     }
 
 }

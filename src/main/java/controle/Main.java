@@ -20,6 +20,10 @@ public class Main {
         pessoa.removeAtividadeDia("dale");
 
 
+        Atividade a = new Atividade("natação","15:00","16:00","Lazer");
+        pessoa.editaAtividade("futebol",a);
+
+
         System.out.println(pessoa.getAtividades().toString());
 
 
