@@ -47,7 +47,7 @@ public class Main {
         atividadeDAO.criaAtividade(atividade,pessoa);
         atividadeDAO.criaAtividade(atividade,pessoa);
         atividadeDAO.criaAtividade(atividade,pessoa);
-        
+
 
         ConectaMysql.fechaConexao(con);
         System.out.println(ConectaMysql.statusConection());
