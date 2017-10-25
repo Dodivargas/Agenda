@@ -13,87 +13,85 @@ import java.sql.ResultSet;
 
 //Início da classe de conexão//
 
-public class ConectaMysql{
+public class ConectaMysql {
 
-    private static final  String driver = "com.mysql.jdbc.Driver";
-    private static final  String url = "jdbc:mysql://localhost:3306/agenda";
-    private static final  String user = "root";
-    private static final  String senha = "dodivargas";
+    private static final String driver = "com.mysql.jdbc.Driver";
+    private static final String url = "jdbc:mysql://localhost:3306/agenda";
+    private static final String user = "root";
+    private static final String senha = "dodivargas";
     private static String status = "";
 
-    public static Connection getConnection(){
+    public static Connection getConnection() {
         Connection connection = null;
         try {
 
             Class.forName(driver);
 
-            connection = DriverManager.getConnection(url,user,senha);
+            connection = DriverManager.getConnection(url, user, senha);
 
             if (connection != null) {
 
-                status = ("STATUS--->Conectado com sucesso!");
+                status = ("Conectado com sucesso!");
 
             } else {
 
-                status = ("STATUS--->Não foi possivel realizar conexão");
+                status = ("Não foi possivel realizar conexão");
 
             }
 
             return connection;
 
-        } catch (ClassNotFoundException | SQLException e ){
+        } catch (ClassNotFoundException | SQLException e) {
 
-            throw new RuntimeException("Erro na conexão: ",e);
+            throw new RuntimeException("Erro na conexão: ", e);
 
         }
 
 
     }
 
-    public static void fechaConexao(Connection con){
+    public static void fechaConexao(Connection con) {
 
         try {
-            if(con!=null) {
+            if (con != null) {
                 con.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        status = ("Conectou e foi fechado");
+        status = ("conectou e foi fechado");
 
     }
 
-    public static void fechaConexao(Connection con, PreparedStatement stmt){
+    public static void fechaConexao(Connection con, PreparedStatement stmt) {
 
         fechaConexao(con);
         try {
-            if(stmt!=null){
+            if (stmt != null) {
                 stmt.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        status = ("Conectou e foi fechado");
+        status = ("conectou e foi fechado");
     }
 
-    public static void fechaConexao(Connection con, PreparedStatement stmt, ResultSet rs){
+    public static void fechaConexao(Connection con, PreparedStatement stmt, ResultSet rs) {
 
-        fechaConexao(con,stmt);
+        fechaConexao(con, stmt);
 
         try {
-            if(rs != null){
+            if (rs != null) {
                 rs.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        status = ("Conectou e foi fechado");
+        status = ("conectou e foi fechado");
     }
 
     public static String statusConection() {
 
         return status;
-
     }
-
 }
