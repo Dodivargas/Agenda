@@ -10,18 +10,31 @@ import java.util.List;
 public class Pessoa {
 
     private String nome;
+    private int id;
     private ArrayList<Atividade> atividades;
 
-    public ArrayList<Atividade> getAtividades() {
-        return atividades;
-    }
 
     public Pessoa(String nome) {
         this.nome = nome;
         atividades = new ArrayList<Atividade>();
     }
+
     public Pessoa(){
         atividades = new ArrayList<Atividade>();
+    }
+
+
+    public ArrayList<Atividade> getAtividades() {
+        return atividades;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -40,7 +53,7 @@ public class Pessoa {
 
         for (int i = 0 ;i<atividades.size();i++){
 
-            if(atividadeRemover == atividades.get(i).getNomeAtividade()){
+            if(atividadeRemover == atividades.get(i).getNome()){
 
                 atividades.remove(atividades.get(i));
             }
@@ -51,7 +64,7 @@ public class Pessoa {
 
         for (int i = 0 ;i<atividades.size();i++){
 
-            if(atividadeARemover == atividades.get(i).getNomeAtividade()){
+            if(atividadeARemover == atividades.get(i).getNome()){
                 atividades.remove(i);
                 atividades.add(i,atividade);
             }

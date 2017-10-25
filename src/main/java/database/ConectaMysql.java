@@ -19,7 +19,7 @@ public class ConectaMysql {
     private static final String url = "jdbc:mysql://localhost:3306/agenda";
     private static final String user = "root";
     private static final String senha = "dodivargas";
-    private static String status = "";
+    private static boolean status;
 
     public static Connection getConnection() {
         Connection connection = null;
@@ -31,11 +31,11 @@ public class ConectaMysql {
 
             if (connection != null) {
 
-                status = ("Conectado com sucesso!");
+                status = true;
 
             } else {
 
-                status = ("Não foi possivel realizar conexão");
+                status = false;
 
             }
 
@@ -59,7 +59,7 @@ public class ConectaMysql {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        status = ("conectou e foi fechado");
+        status = false;
 
     }
 
@@ -73,7 +73,7 @@ public class ConectaMysql {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        status = ("conectou e foi fechado");
+        status = false;
     }
 
     public static void fechaConexao(Connection con, PreparedStatement stmt, ResultSet rs) {
@@ -87,10 +87,10 @@ public class ConectaMysql {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        status = ("conectou e foi fechado");
+        status = false;
     }
 
-    public static String statusConection() {
+    public static boolean statusConection() {
 
         return status;
     }

@@ -2,26 +2,18 @@ package modelo;
 
 import database.ConectaMysql;
 import org.junit.Test;
-
-import java.awt.*;
-
 import java.sql.Connection;
-
-import java.sql.DriverManager;
-
-import java.sql.SQLException;
-
-import database.ConectaMysql;
-
 import static org.junit.Assert.assertEquals;
 
-class TestaMyslq{
+public class TestaMysql {
+
+
     @Test
     public void TestaConexao(){
 
         Connection con = ConectaMysql.getConnection();
 
-        String respostaEsperada = "Conectado com sucesso!";
+        boolean respostaEsperada = true;
 
         assertEquals(ConectaMysql.statusConection(), respostaEsperada);
     }
@@ -32,10 +24,8 @@ class TestaMyslq{
 
         ConectaMysql.fechaConexao(con);
 
-        String respostaEsperada = "conectou e foi fechado";
+        boolean respostaEsperada = false;
 
         assertEquals(ConectaMysql.statusConection(), respostaEsperada);
     }
-
-
 }

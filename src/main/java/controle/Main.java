@@ -1,5 +1,7 @@
 package controle;
 
+import database.AtividadeDAO;
+import database.PessoaDAO;
 import modelo.Atividade;
 import modelo.Pessoa;
 import database.ConectaMysql;
@@ -30,17 +32,25 @@ public class Main {
 //        System.out.println(pessoa.getAtividades().toString());
 
 
-            Connection con = ConectaMysql.getConnection();
+        Connection con = ConectaMysql.getConnection();
+        System.out.println(ConectaMysql.statusConection());
 
-            ConectaMysql.fechaConexao(con);
+        Pessoa pessoa = new Pessoa("Rubens");
+        Atividade atividade = new Atividade("futebol","14:00","15:00","Lazer");
+        PessoaDAO pessoaDAO = new PessoaDAO(con);
+        AtividadeDAO atividadeDAO = new AtividadeDAO(con);
 
+        pessoaDAO.registraPessoa(pessoa);
 
-            System.out.println(ConectaMysql.statusConection());
+        atividadeDAO.criaAtividade(atividade,pessoa);
+        atividadeDAO.criaAtividade(atividade,pessoa);
+        atividadeDAO.criaAtividade(atividade,pessoa);
+        atividadeDAO.criaAtividade(atividade,pessoa);
+        atividadeDAO.criaAtividade(atividade,pessoa);
+        
 
-
-
-
-
+        ConectaMysql.fechaConexao(con);
+        System.out.println(ConectaMysql.statusConection());
 
 
 
