@@ -1,4 +1,4 @@
-package controle;
+package Visão;
 
 import database.AtividadeDAO;
 import database.PessoaDAO;
@@ -6,7 +6,11 @@ import modelo.Atividade;
 import modelo.Pessoa;
 import database.ConectaMysql;
 
+import java.io.Console;
+import java.util.Scanner;
+
 import java.sql.*;
+import java.util.List;
 
 public class Main {
 
@@ -33,26 +37,27 @@ public class Main {
 
 
         Connection con = ConectaMysql.getConnection();
-        System.out.println(ConectaMysql.statusConection());
 
         Pessoa pessoa = new Pessoa("Rubens");
-        Atividade atividade = new Atividade("futebol","14:00","15:00","Lazer");
-        PessoaDAO pessoaDAO = new PessoaDAO(con);
-        AtividadeDAO atividadeDAO = new AtividadeDAO(con);
+        Atividade atividade = new Atividade("futebol", "14:00", "15:00", "Lazer");
+        PessoaDAO pessoaDAO = new PessoaDAO();
+        AtividadeDAO atividadeDAO = new AtividadeDAO();
 
         pessoaDAO.registraPessoa(pessoa);
 
-        atividadeDAO.criaAtividade(atividade,pessoa);
-        atividadeDAO.criaAtividade(atividade,pessoa);
-        atividadeDAO.criaAtividade(atividade,pessoa);
-        atividadeDAO.criaAtividade(atividade,pessoa);
-        atividadeDAO.criaAtividade(atividade,pessoa);
+        atividadeDAO.criaAtividade(atividade, pessoa);
+        atividadeDAO.criaAtividade(atividade, pessoa);
+        atividadeDAO.criaAtividade(atividade, pessoa);
+        atividadeDAO.criaAtividade(atividade, pessoa);
+        atividadeDAO.criaAtividade(atividade, pessoa);
 
+        List<Atividade> atividades = atividadeDAO.listaAtividades(atividade, pessoa);
+
+        for (int i = 0; i < atividades.size(); i++) {
+            System.out.println(atividades.get(i));
+        }
 
         ConectaMysql.fechaConexao(con);
-        System.out.println(ConectaMysql.statusConection());
-
-
 
 
     }

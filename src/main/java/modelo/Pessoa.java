@@ -45,6 +45,9 @@ public class Pessoa {
         this.nome = nome;
     }
 
+
+
+
     public void adicionaAtividadeDia(Atividade atividade){
         atividades.add(atividade);
         Collections.sort(atividades);
