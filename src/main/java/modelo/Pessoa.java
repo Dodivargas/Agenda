@@ -10,12 +10,15 @@ import java.util.List;
 public class Pessoa {
 
     private String nome;
+
+    private String senha;
     private int id;
     private ArrayList<Atividade> atividades;
 
 
-    public Pessoa(String nome) {
+    public Pessoa(String nome,String senha) {
         this.nome = nome;
+        this.senha = senha;
         atividades = new ArrayList<Atividade>();
     }
 
@@ -28,7 +31,9 @@ public class Pessoa {
         return atividades;
     }
 
-
+    public String getSenha() {
+        return senha;
+    }
     public int getId() {
         return id;
     }

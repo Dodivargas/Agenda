@@ -38,7 +38,7 @@ public class Main {
 
         Connection con = ConectaMysql.getConnection();
 
-        Pessoa pessoa = new Pessoa("Rubens");
+        Pessoa pessoa = new Pessoa("Rubens" , "dale");
         Atividade atividade = new Atividade("futebol", "14:00", "15:00", "Lazer");
         PessoaDAO pessoaDAO = new PessoaDAO();
         AtividadeDAO atividadeDAO = new AtividadeDAO();
