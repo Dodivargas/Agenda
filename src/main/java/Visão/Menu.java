@@ -24,14 +24,10 @@ public class Menu {
             opcao = (s.nextInt());
             switch (opcao) {
                 case 1:
-
-
                     break;
                 case 2:
-
                     break;
                 case 0:
-
                     break;
                 default:
                     System.out.println("Opção Inválida!");

@@ -23,14 +23,15 @@ public class PessoaDAO {
             pessoa.setId(idGerado);
         }
     }
-    public boolean verificaPessoa(String nome) throws SQLException {
+    public boolean verificaPessoa(String nome,String senha) throws SQLException {
         String sql = "select * from pessoas";
         boolean aux = false;
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             try (ResultSet rs = stm.getResultSet()) {
                 while (rs.next()) {
+                    String senha1 = rs.getString("senha");
                     String nome1 = rs.getString("nome");
-                    if (nome.equals(nome1)) {
+                    if (nome.equals(nome1) || senha.equals(senha1)) {
                         aux = true;
                     }else aux = false;
                 }
