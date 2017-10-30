@@ -1,13 +1,10 @@
-package Visão;
+package visao;
 
 import database.AtividadeDAO;
 import database.PessoaDAO;
 import modelo.Atividade;
 import modelo.Pessoa;
 import database.ConectaMysql;
-
-import java.io.Console;
-import java.util.Scanner;
 
 import java.sql.*;
 import java.util.List;
@@ -35,30 +32,30 @@ public class Main {
 //
 //        System.out.println(pessoa.getAtividades().toString());
 
-
-        Connection con = ConectaMysql.getConnection();
-
-        Pessoa pessoa = new Pessoa("Rubens" , "dale");
-        Atividade atividade = new Atividade("futebol", "14:00", "15:00", "Lazer");
-        PessoaDAO pessoaDAO = new PessoaDAO();
-        AtividadeDAO atividadeDAO = new AtividadeDAO();
-
-        pessoaDAO.registraPessoa(pessoa);
-
-        atividadeDAO.criaAtividade(atividade, pessoa);
-        atividadeDAO.criaAtividade(atividade, pessoa);
-        atividadeDAO.criaAtividade(atividade, pessoa);
-        atividadeDAO.criaAtividade(atividade, pessoa);
-        atividadeDAO.criaAtividade(atividade, pessoa);
-
-        List<Atividade> atividades = atividadeDAO.listaAtividades(atividade, pessoa);
-
-        for (int i = 0; i < atividades.size(); i++) {
-            System.out.println(atividades.get(i));
-        }
-
-        ConectaMysql.fechaConexao(con);
-
-
-    }
-}
+//
+//        Connection con = ConectaMysql.getConnection();
+//
+//        Pessoa pessoa = new Pessoa("Rubens" , "dale");
+//        Atividade atividade = new Atividade("futebol", "14:00", "15:00", "Lazer");
+//        PessoaDAO pessoaDAO = new PessoaDAO();
+//        AtividadeDAO atividadeDAO = new AtividadeDAO();
+//
+//        pessoaDAO.registraPessoa(pessoa);
+//
+//        atividadeDAO.criaAtividade(atividade, pessoa);
+//        atividadeDAO.criaAtividade(atividade, pessoa);
+//        atividadeDAO.criaAtividade(atividade, pessoa);
+//        atividadeDAO.criaAtividade(atividade, pessoa);
+//        atividadeDAO.criaAtividade(atividade, pessoa);
+//
+//        List<Atividade> atividades = atividadeDAO.listaAtividades(atividade, pessoa);
+//
+//        for (int i = 0; i < atividades.size(); i++) {
+//            System.out.println(atividades.get(i));
+//        }
+//
+//        ConectaMysql.fechaConexao(con);
+//
+//
+//    }
+}}

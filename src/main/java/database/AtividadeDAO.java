@@ -43,7 +43,7 @@ public class AtividadeDAO {
 
     }
 
-    public boolean editarAtividade(Atividade atividade, Integer id) throws SQLException {
+    public int editarAtividade(Atividade atividade, Integer id) throws SQLException {
         String sql = "UPDATE atividades SET nome = ?, horainicio = ?, horafim = ?,tipo = ? WHERE atividade_id = ?";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setString(1,atividade.getNome());
@@ -53,43 +53,56 @@ public class AtividadeDAO {
             stm.setInt(5,id);
             stm.execute();
         }
-    return true;
+        return id;
     }
 
     public int selecionaAtividade(String horaInicio) throws SQLException {
-        String sql = "select atividade_id from atividades where horainicio = ?;";
-        Integer PegaIdAretornar = 0;
+        String sql = "select atividade_id from atividades where horainicio = ?";
+        Integer pegaIdAretornar = 0;
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setString(1,horaInicio);
             stm.execute();
             try(ResultSet rs = stm.getResultSet()){
                 rs.next();
-                PegaIdAretornar = rs.getInt("id");
+                pegaIdAretornar = rs.getInt("atividade_id");
             }
         }
-        return PegaIdAretornar;
+        return pegaIdAretornar;
     }
-
-    public List<Atividade> listaAtividades(Atividade atividade , Pessoa pessoa) throws SQLException {
+    public List<Atividade> listaAtividades(Pessoa pessoa) throws SQLException {
 
         List<Atividade> atividades = new ArrayList<>();
-
-        String sql = "select * from atividades";
-
+        String sql = "select * from atividades where pessoa_id = ?";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
+            stm.setInt(1,pessoa.getId());
             stm.execute();
             try(ResultSet rs = stm.getResultSet()){
                 while(rs.next()){
-                    Integer id = rs.getInt("pessoa_id");
                     String nome = rs.getString("nome");
                     String horainicio = rs.getString("horainicio");
                     String horafim  = rs.getString("horafim");
                     String tipo = rs.getString("tipo");
-                    Atividade atividade1 = new Atividade(nome,horainicio,horafim,tipo,id);
+                    Atividade atividade1 = new Atividade(nome,horainicio,horafim,tipo);
                     atividades.add(atividade1);
                 }
             }
         }
         return atividades;
+    }
+    public void buscaAtividadeIndividualmente(Integer idABuscar) throws SQLException{
+        String sql = "select nome,horainicio,horafim,tipo from atividades where atividade_id = ?";
+        try (PreparedStatement stm = con.prepareStatement(sql)) {
+            stm.setInt(1, idABuscar);
+            stm.execute();
+            try (ResultSet rs = stm.getResultSet()) {
+                rs.next();
+                String nome = rs.getString("nome");
+                String horainicio = rs.getString("horainicio");
+                String horafim  = rs.getString("horafim");
+                String tipo = rs.getString("tipo");
+                Atividade atividade = new Atividade(nome,horainicio,horafim,tipo);
+                System.out.println(atividade.toString());
+            }
+        }
     }
 }
