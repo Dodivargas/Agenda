@@ -19,39 +19,8 @@ public class MenuAtividades {
         int opcaoAtividades = 999;
         Scanner s = new Scanner(System.in);
 
-<<<<<<< HEAD:src/main/java/Visão/Menu.java
-        do {
-
-            System.out.println("\n\n###   AGENDA DE ATIVIDADES   ###");
-            System.out.println("\n                      =========================    ");
-            System.out.println("                  |  1 - Criar usuario              |");
-            System.out.println("                  |  2 - Entrar com user existente  |");
-            System.out.println("                        =========================\n  ");
-            opcao = (s.nextInt());
-            switch (opcao) {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 0:
-                    break;
-                default:
-                    System.out.println("Opção Inválida!");
-                    break;
-            }
-        }while (opcao != 0);
-    }
-
-
-    public static void menuAtividades(){
-        int opcao = 0;
-        Scanner s = new Scanner(System.in);
-        do {
-            System.out.println("\n\n###   AGENDA DE ATIVIDADES   ###");
-=======
         while (opcaoAtividades != 0){
             System.out.println("              \n\n###   AGENDA DE ATIVIDADES   ###");
->>>>>>> 8387873385f63fb9cca39487df6c9e3e3f8a245b:src/main/java/visao/MenuAtividades.java
             System.out.println("\n                     ========================="  );
             System.out.println("                  |     1 - Criar Atividade      |");
             System.out.println("                  |     2 - Editar Atividade     |");

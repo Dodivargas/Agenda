@@ -10,10 +10,7 @@ import java.util.List;
 public class Pessoa {
 
     private String nome;
-<<<<<<< HEAD
-=======
 
->>>>>>> 8387873385f63fb9cca39487df6c9e3e3f8a245b
     private String senha;
     private int id;
     private List<Atividade> atividades;
@@ -34,24 +31,12 @@ public class Pessoa {
     public List<Atividade> getAtividades() {
         return atividades;
     }
-<<<<<<< HEAD
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-=======
     public void setAtividades(List<Atividade> atividades) {
         this.atividades = atividades;
     }
     public String getSenha() {
         return senha;
     }
->>>>>>> 8387873385f63fb9cca39487df6c9e3e3f8a245b
     public int getId() {
         return id;
     }
