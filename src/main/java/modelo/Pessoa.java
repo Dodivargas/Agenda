@@ -54,8 +54,6 @@ public class Pessoa {
     }
 
 
-
-
     public void adicionaAtividadeDia(Atividade atividade){
         atividades.add(atividade);
         Collections.sort(atividades);

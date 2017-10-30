@@ -2,6 +2,7 @@ package database;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import modelo.Atividade;
@@ -31,7 +32,6 @@ public class AtividadeDAO {
             return true;
         }
     }
-
     public void removerAtividade(Integer id) throws SQLException {
 
         String sql = "DELETE FROM atividades WHERE atividade_id = ?";
@@ -87,6 +87,7 @@ public class AtividadeDAO {
                 }
             }
         }
+        Collections.sort(atividades);
         return atividades;
     }
     public void buscaAtividadeIndividualmente(Integer idABuscar) throws SQLException{

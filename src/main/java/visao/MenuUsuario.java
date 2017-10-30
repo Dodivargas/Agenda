@@ -21,12 +21,12 @@ public class MenuUsuario {
 
         while (opcaoUser != 0){
 
-            System.out.println("                \n\n###   AGENDA DE ATIVIDADES   ###\n");
-            System.out.println("                     =========================    ");
-            System.out.println("                  |  1 - Criar usuario             |");
-            System.out.println("                  |  2 - Entrar com user existente |");
-            System.out.println("                  |  0 - Sair                      |");
-            System.out.println("                       =========================\n  ");
+            System.out.println("\t\n\n###   AGENDA DE ATIVIDADES   ###\n");
+            System.out.println("\t   =========================    ");
+            System.out.println("\t|  1 - Criar usuario             |");
+            System.out.println("\t|  2 - Entrar com user existente |");
+            System.out.println("\t|  0 - Sair                      |");
+            System.out.println("\t   =========================\n  ");
             opcaoUser = (s.nextInt());
             switch (opcaoUser) {
                 case 1:

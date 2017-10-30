@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Timer;
+
 public class Atividade implements Comparable{
 
 
@@ -19,7 +21,6 @@ public class Atividade implements Comparable{
         this.tipo = tipo;
         this.id = id;
     }
-
     public Atividade(String nome, String horaIncio, String horaFim, String tipo) {
         this.horaIncio = horaIncio;
         this.horaFim = horaFim;
@@ -30,13 +31,8 @@ public class Atividade implements Comparable{
     public Atividade(){
 
     }
-
     public Integer getId() {
         return id;
-    }
-
-    public Integer getHora() {
-        return hora;
     }
 
     public String getNome() {
@@ -71,6 +67,11 @@ public class Atividade implements Comparable{
         this.tipo = tipo;
     }
 
+    public Integer getHora() {
+        String aux = horaIncio.substring(0,2);
+        hora = Integer.parseInt(aux);
+        return hora;
+    }
 
     @Override
     public String toString(){
@@ -87,6 +88,8 @@ public class Atividade implements Comparable{
             return 1;
         }else return 0;
     }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
