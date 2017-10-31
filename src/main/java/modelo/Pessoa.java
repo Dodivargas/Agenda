@@ -14,6 +14,7 @@ public class Pessoa {
     private String senha;
     private int id;
     private List<Atividade> atividades;
+    private List<Atividade> atividadesConcluidas;
 
 
 
@@ -28,6 +29,15 @@ public class Pessoa {
     }
 
 
+
+
+    public List<Atividade> getAtividadesConcluidas() {
+        return atividadesConcluidas;
+    }
+
+    public void setAtividadesConcluidas(List<Atividade> atividadesConcluidas) {
+        this.atividadesConcluidas = atividadesConcluidas;
+    }
     public List<Atividade> getAtividades() {
         return atividades;
     }

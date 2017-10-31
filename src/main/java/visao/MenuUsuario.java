@@ -1,10 +1,10 @@
 package visao;
 
-import controle.MenuUsuarioControle;
+import controle.UsuarioControle;
+import Exceptions.UsuarioJáExistenteException;
 import database.AtividadeDAO;
 import database.PessoaDAO;
 import modelo.Atividade;
-
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -15,10 +15,9 @@ public class MenuUsuario {
         Atividade atividade = new Atividade();
         PessoaDAO pessoaDAO = new PessoaDAO();
         AtividadeDAO atividadeDAO = new AtividadeDAO();
-        MenuUsuarioControle menuUsuarioControle = new MenuUsuarioControle();
+        UsuarioControle menuUsuarioControle = new UsuarioControle();
         int opcaoUser = 999;
         Scanner s = new Scanner(System.in);
-
         while (opcaoUser != 0){
 
             System.out.println("\t\n\n###   AGENDA DE ATIVIDADES   ###\n");
@@ -28,18 +27,25 @@ public class MenuUsuario {
             System.out.println("\t|  0 - Sair                      |");
             System.out.println("\t   =========================\n  ");
             opcaoUser = (s.nextInt());
-            switch (opcaoUser) {
-                case 1:
-                    menuUsuarioControle.criaUsuario();
-                    break;
-                case 2:
-                    menuUsuarioControle.verificaUsuario();
-                case 0:
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Opção Inválida tente novamente");
-                    break;
+            try{
+                switch (opcaoUser) {
+                    case 1:
+                        menuUsuarioControle.criaUsuario();
+                        break;
+                    case 2:
+                        menuUsuarioControle.verificaUsuario();
+                        break;
+                    case 0:
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Opção Inválida tente novamente");
+                        break;
+                }
+            }catch (Exception e){
+                if(e instanceof UsuarioJáExistenteException){
+                    System.out.println("Esse nome de usuario já está cadastrado");
+                }
             }
         }
     }
