@@ -51,12 +51,12 @@ public class AtividadeDAO {
         return id;
     }
 
-    public int selecionaAtividade(String horaInicio,Pessoa pessoa) throws SQLException {
+    public int selecionaAtividade(String horaInicio, Pessoa pessoa) throws SQLException {
         String sql = "select atividade_id from atividades where horainicio = ? and pessoa_id = ?";
         Integer pegaIdAretornar = 0;
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setString(1,horaInicio);
-            stm.setInt(2,pessoa.getId());
+            stm.setInt(2, pessoa.getId());
             stm.execute();
             try(ResultSet rs = stm.getResultSet()){
                 rs.next();
@@ -70,7 +70,7 @@ public class AtividadeDAO {
         List<Atividade> atividades = new ArrayList<>();
         String sql = "select * from atividades where pessoa_id = ?";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
-            stm.setInt(1,pessoa.getId());
+            stm.setInt(1, pessoa.getId());
             stm.execute();
             try(ResultSet rs = stm.getResultSet()){
                 while(rs.next()){
@@ -135,7 +135,7 @@ public class AtividadeDAO {
         List<Atividade> atividades = new ArrayList<>();
         String sql = "select * from atividadesConcluidas where pessoa_id = ?";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
-            stm.setInt(1,pessoa.getId());
+            stm.setInt(1, pessoa.getId());
             stm.execute();
             try(ResultSet rs = stm.getResultSet()){
                 while(rs.next()){
@@ -150,5 +150,20 @@ public class AtividadeDAO {
         }
         Collections.sort(atividades);
         return atividades;
+    }
+    public void limpaAtividades(Pessoa pessoa) throws SQLException {
+        String sql = "DELETE FROM atividades WHERE pessoa_id = ?";
+        try (PreparedStatement stm = con.prepareStatement(sql)) {
+            stm.setInt(1, pessoa.getId());
+            stm.execute();
+        }
+    }
+
+    public void limpaAtividadesConcluidas(Pessoa pessoa) throws SQLException {
+        String sql = "DELETE FROM atividadesConcluidas WHERE pessoa_id = ?";
+        try (PreparedStatement stm = con.prepareStatement(sql)) {
+            stm.setInt(1, pessoa.getId());
+            stm.execute();
+        }
     }
 }

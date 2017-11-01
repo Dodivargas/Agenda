@@ -3,12 +3,8 @@ package database;
 import controle.AtividadesControle;
 import modelo.Atividade;
 import modelo.Pessoa;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
-import javax.sql.DataSource;
-import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.Arrays;
 import java.util.List;
@@ -32,9 +28,9 @@ public class AtividadeDAOTest {
         atividade.setTipo("esporte");
 
         AtividadeDAO daoFalso = mock(AtividadeDAO.class);
-        when(daoFalso.criaAtividade(atividade,pessoa)).thenReturn(true);
+        when(daoFalso.criaAtividade(atividade, pessoa)).thenReturn(true);
 
-        assertTrue(daoFalso.criaAtividade(atividade,pessoa));
+        assertTrue(daoFalso.criaAtividade(atividade, pessoa));
     }
     @Test
     public void retornaAtividades() throws SQLException {
@@ -55,8 +51,8 @@ public class AtividadeDAOTest {
 
         AtividadesControle atividadesControle = new AtividadesControle(daoFalso);
 
-        atividadesControle.buscaAtividade(pessoa);
+//        atividadesControle.buscaAtividade(pessoa);
 
-        assertEquals(atividades,pessoa.getAtividades());
+        assertEquals(atividades, pessoa.getAtividades());
     }
 }

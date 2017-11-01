@@ -1,6 +1,8 @@
 package visao;
 
 import java.sql.SQLException;
+import validações.ValidaNomeUser;
+import visao.MenuUsuario;
 
 public class Main{
 

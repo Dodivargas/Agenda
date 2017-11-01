@@ -1,13 +1,12 @@
 package controle;
 
-import Exceptions.AtividadeInvalidaException;
-import Exceptions.AtividadeNaoEncontradaException;
+import exceptions.AtividadeInvalidaException;
+import exceptions.AtividadeNaoEncontradaException;
 import database.AtividadeDAO;
 import modelo.Atividade;
 import modelo.Pessoa;
 
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class AtividadesControle {
 
@@ -18,80 +17,60 @@ public class AtividadesControle {
     }
 
 
-    public void criaAtividade(Pessoa pessoa) throws SQLException {
+    public void criaAtividade(Pessoa pessoa, Atividade atividade) throws SQLException {
         try {
-            Scanner s = new Scanner(System.in);
-            System.out.println("Nome da atividade:");
-            String nome = s.nextLine();
-            System.out.println("Hora do inicio da atividade: ");
-            String horainicio = s.nextLine();
-            System.out.println("Hora do fim da atividade: ");
-            String horafim = s.nextLine();
-            System.out.println("Tipo da atividade: ");
-            String tipo = s.nextLine();
-            Atividade atividade = new Atividade(nome,horainicio,horafim,tipo);
-            atividadeDAO.criaAtividade(atividade,pessoa);
+            atividadeDAO.criaAtividade(atividade, pessoa);
         }catch (java.sql.SQLException e){
             throw new AtividadeInvalidaException(e);
         }
     }
-    public void editaAtividade(Pessoa pessoa){
+
+    public void editaAtividade(Pessoa pessoa, String horainicioeditar, Atividade atividade){
         try {
-            Scanner s = new Scanner(System.in);
-            System.out.println("Digite a hora inicial da atividade que deseja editar:");
-            String horainicioeditar = s.nextLine();
             Integer idAVerificar = 0;
-            idAVerificar = atividadeDAO.selecionaAtividade(horainicioeditar,pessoa);
+            idAVerificar = atividadeDAO.selecionaAtividade(horainicioeditar, pessoa);
             if (idAVerificar != 0) {
-                System.out.println("Nome da atividade:");
-                String nome = s.nextLine();
-                System.out.println("Hora do inicio da atividade: ");
-                String horainicio = s.nextLine();
-                System.out.println("Hora do fim da atividade: ");
-                String horafim = s.nextLine();
-                System.out.println("Tipo da atividade: ");
-                String tipo = s.nextLine();
-                Atividade atividade = new Atividade(nome, horainicio, horafim, tipo);
                 atividadeDAO.editarAtividade(atividade, idAVerificar);
             }
         }catch(java.sql.SQLException e){
             throw new AtividadeNaoEncontradaException(e);
         }
     }
-    public void removeAtividade(Pessoa pessoa) throws SQLException {
+
+    public void removeAtividade(Pessoa pessoa, String horaInicioParaRemover) throws SQLException {
         try{
-            Scanner s = new Scanner(System.in);
-            System.out.println("Digite a hora inicial da atividade que deseja remover:");
-            String horainicioeditar = s.nextLine();
             Integer idARemover = 0;
-            idARemover = atividadeDAO.selecionaAtividade(horainicioeditar,pessoa);
+            idARemover = atividadeDAO.selecionaAtividade(horaInicioParaRemover, pessoa);
             if (idARemover != 0){
                 atividadeDAO.removerAtividade(idARemover);
             }
+
         }catch (java.sql.SQLException e){
             throw new AtividadeNaoEncontradaException(e);
         }
     }
+
     public void mostraTodasAtividades(Pessoa pessoa) throws SQLException {
         pessoa.setAtividades(atividadeDAO.listaAtividades(pessoa));
         if (pessoa.getAtividades().size() > 0){
-            for (int i = 0;i<pessoa.getAtividades().size();i++){
+            for (int i = 0; i< pessoa.getAtividades().size(); i++){
                 System.out.println(pessoa.getAtividades().get(i));
             }
-        }else System.out.println("\n\n Não existem atividades cadastradas para esse usuario!!!");
+        }else System.out.println("\n\n Não existem atividades cadastradas para esse pessoa!!!");
     }
 
-    public void buscaAtividade(Pessoa pessoa) throws SQLException {
+    public void buscaAtividade(Pessoa pessoa, String horaInicialAVer) throws SQLException {
         try {
-            Scanner s = new Scanner(System.in);
-            System.out.println("Digite a hora inicial da atividade que deseja ver:");
-            String horainicio = s.nextLine();
             Integer idAVerificar = 0;
-            idAVerificar = atividadeDAO.selecionaAtividade(horainicio,pessoa);
+            idAVerificar = atividadeDAO.selecionaAtividade(horaInicialAVer, pessoa);
             atividadeDAO.buscaAtividadeIndividualmente(idAVerificar);
         }catch (java.sql.SQLException e){
             throw new AtividadeNaoEncontradaException(e);
         }
+    }
+
+    public void limparAtividades(Pessoa pessoa) throws SQLException {
+        atividadeDAO.limpaAtividades(pessoa);
     }
 
 }

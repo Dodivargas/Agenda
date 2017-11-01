@@ -1,5 +1,5 @@
 # Agenda de Atividades
-O projeto tem como objetivo controlar as atividades diárias do usuario, Ele pode adicionar atividades que ira fazer durante o dia, pode excluir essas atividades individualmente ou geralmente, o usuario também pode criar uma breve descrição sobre a atividade, Ele também pode adicionar algum pré requisito para essa atividade, e ele ta também pode gerar um relátorio sobre a atividade.
+O projeto tem como objetivo controlar as atividades diárias do pessoa, Ele pode adicionar atividades que ira fazer durante o dia, pode excluir essas atividades individualmente ou geralmente, o pessoa também pode criar uma breve descrição sobre a atividade, Ele também pode adicionar algum pré requisito para essa atividade, e ele ta também pode gerar um relátorio sobre a atividade.
 
 * * * 
 
@@ -10,7 +10,7 @@ O projeto tem como objetivo controlar as atividades diárias do usuario, Ele pod
 - Gerar relatórios pequenos de feedback sobre a atividade que foi realizada.
 - Marcar atividades conforme sua importancia.
 - Poder avaliar como se sentiu durante determinado dia de atividades.
-- Ser indicado ao usuario que não tenha menos que 6 horas de sono.
+- Ser indicado ao pessoa que não tenha menos que 6 horas de sono.
 
 
 ## Douglas Vargas.

@@ -10,13 +10,12 @@ import java.util.List;
 public class Pessoa {
 
     private String nome;
-
     private String senha;
     private int id;
     private List<Atividade> atividades;
     private List<Atividade> atividadesConcluidas;
 
-    public Pessoa(String nome, String senha,int id) {
+    public Pessoa(String nome, String senha, int id) {
         this.nome = nome;
         this.senha = senha;
         this.id = id;

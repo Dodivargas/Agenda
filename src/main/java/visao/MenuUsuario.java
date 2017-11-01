@@ -1,10 +1,13 @@
 package visao;
 
 import controle.UsuarioControle;
-import Exceptions.UsuarioJáExistenteException;
+import exceptions.UsuarioJáExistenteException;
 import database.AtividadeDAO;
 import database.PessoaDAO;
 import modelo.Atividade;
+import modelo.Pessoa;
+import validações.ValidaNomeUser;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -30,10 +33,14 @@ public class MenuUsuario {
             try{
                 switch (opcaoUser) {
                     case 1:
-                        menuUsuarioControle.criaUsuario();
+                        Pessoa pessoa;
+                        pessoa = UsuarioVisão.verificaUsuario();
+                        menuUsuarioControle.criaUsuario(pessoa);
                         break;
                     case 2:
-                        menuUsuarioControle.verificaUsuario();
+                        Pessoa pessoa2;
+                        pessoa2 = UsuarioVisão.verificaUsuario();
+                        menuUsuarioControle.verificaUsuario(pessoa2);
                         break;
                     case 0:
                         System.exit(0);
@@ -46,6 +53,7 @@ public class MenuUsuario {
                 if(e instanceof UsuarioJáExistenteException){
                     System.out.println("Esse nome de usuario já está cadastrado");
                 }
+
             }
         }
     }
