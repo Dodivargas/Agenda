@@ -19,9 +19,7 @@ public class AtividadeDAO {
     }
 
     public boolean criaAtividade(Atividade atividade , Pessoa pessoa) throws SQLException {
-
         String sql = "insert into atividades(pessoa_id,nome,horainicio,horafim,tipo)values(?,?,?,?,?)";
-
         try (PreparedStatement stm = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stm.setString(1, valueOf(pessoa.getId()));
             stm.setString(2, atividade.getNome());
@@ -29,7 +27,7 @@ public class AtividadeDAO {
             stm.setString(4, atividade.getHoraFim());
             stm.setString(5, atividade.getTipo());
             stm.execute();
-            return true;
+            return false;
         }
     }
     public void removerAtividade(Integer id) throws SQLException {

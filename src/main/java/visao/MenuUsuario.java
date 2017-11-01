@@ -15,7 +15,7 @@ public class MenuUsuario {
         Atividade atividade = new Atividade();
         PessoaDAO pessoaDAO = new PessoaDAO();
         AtividadeDAO atividadeDAO = new AtividadeDAO();
-        UsuarioControle menuUsuarioControle = new UsuarioControle();
+        UsuarioControle menuUsuarioControle = new UsuarioControle(pessoaDAO);
         int opcaoUser = 999;
         Scanner s = new Scanner(System.in);
         while (opcaoUser != 0){

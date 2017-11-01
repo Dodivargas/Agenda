@@ -16,25 +16,23 @@ public class Pessoa {
     private List<Atividade> atividades;
     private List<Atividade> atividadesConcluidas;
 
-
-
+    public Pessoa(String nome, String senha,int id) {
+        this.nome = nome;
+        this.senha = senha;
+        this.id = id;
+        atividades = new ArrayList<Atividade>();
+    }
     public Pessoa(String nome, String senha) {
         this.nome = nome;
         this.senha = senha;
         atividades = new ArrayList<Atividade>();
     }
-
     public Pessoa(){
         atividades = new ArrayList<Atividade>();
     }
-
-
-
-
     public List<Atividade> getAtividadesConcluidas() {
         return atividadesConcluidas;
     }
-
     public void setAtividadesConcluidas(List<Atividade> atividadesConcluidas) {
         this.atividadesConcluidas = atividadesConcluidas;
     }
@@ -50,45 +48,13 @@ public class Pessoa {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-
-    public void adicionaAtividadeDia(Atividade atividade){
-        atividades.add(atividade);
-        Collections.sort(atividades);
-    }
-    public void removeAtividadeDia(String atividadeRemover){
-
-        for (int i = 0 ;i<atividades.size();i++){
-
-            if(atividadeRemover == atividades.get(i).getNome()){
-
-                atividades.remove(atividades.get(i));
-            }
-        }
-        Collections.sort(atividades);
-    }
-    public void editaAtividade(String atividadeARemover, Atividade atividade){
-
-        for (int i = 0 ;i<atividades.size();i++){
-
-            if(atividadeARemover == atividades.get(i).getNome()){
-                atividades.remove(i);
-                atividades.add(i,atividade);
-            }
-        }
-
-    }
-
 }

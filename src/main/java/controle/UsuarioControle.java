@@ -13,7 +13,12 @@ import java.util.Scanner;
 public class UsuarioControle {
 
 
-    PessoaDAO pessoaDAO = new PessoaDAO();
+    private PessoaDAO pessoaDAO;
+
+    public UsuarioControle(PessoaDAO pessoaDAO) {
+        this.pessoaDAO = pessoaDAO;
+    }
+
     AtividadeDAO atividadeDAO = new AtividadeDAO();
     MenuAtividades menuAtividades = new MenuAtividades();
     Scanner s = new Scanner(System.in);
