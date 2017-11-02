@@ -2,8 +2,8 @@ package visao;
 
 import controle.UsuarioControle;
 import exceptions.UsuarioJáExistenteException;
-import database.AtividadeDAO;
-import database.PessoaDAO;
+import bancoDados.AtividadeDAO;
+import bancoDados.PessoaDAO;
 import modelo.Atividade;
 import modelo.Pessoa;
 import validações.ValidaNomeUser;

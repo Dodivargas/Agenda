@@ -1,6 +1,5 @@
-package modelo;
+package bancoDados;
 
-import database.ConectaMysql;
 import org.junit.Test;
 import java.sql.Connection;
 import static org.junit.Assert.assertEquals;

@@ -1,7 +1,7 @@
 package controle;
 
 import exceptions.AtividadeNaoEncontradaException;
-import database.AtividadeDAO;
+import bancoDados.AtividadeDAO;
 import modelo.Atividade;
 import modelo.Pessoa;
 

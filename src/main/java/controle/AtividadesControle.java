@@ -2,7 +2,7 @@ package controle;
 
 import exceptions.AtividadeInvalidaException;
 import exceptions.AtividadeNaoEncontradaException;
-import database.AtividadeDAO;
+import bancoDados.AtividadeDAO;
 import modelo.Atividade;
 import modelo.Pessoa;
 
@@ -17,9 +17,10 @@ public class AtividadesControle {
     }
 
 
-    public void criaAtividade(Pessoa pessoa, Atividade atividade) throws SQLException {
+    public boolean criaAtividade(Pessoa pessoa, Atividade atividade) throws SQLException {
         try {
             atividadeDAO.criaAtividade(atividade, pessoa);
+            return true;
         }catch (java.sql.SQLException e){
             throw new AtividadeInvalidaException(e);
         }

@@ -1,10 +1,6 @@
 package modelo;
 
-import jdk.nashorn.internal.objects.NativeDataView;
-
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 public class Pessoa {

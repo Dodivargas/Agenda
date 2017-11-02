@@ -2,10 +2,9 @@ package controle;
 
 import exceptions.UsuarioJáExistenteException;
 import modelo.Pessoa;
-import database.PessoaDAO;
-import database.AtividadeDAO;
+import bancoDados.PessoaDAO;
+import bancoDados.AtividadeDAO;
 import visao.MenuAtividades;
-import validações.ValidaNomeUser;
 
 import java.sql.SQLException;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package database;
+package bancoDados;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class AtividadeDAO {
             return true;
         }
     }
-    public int selecionaAtividade(String horaInicio, Pessoa pessoa) throws SQLException {
+    public Integer selecionaAtividade(String horaInicio, Pessoa pessoa) throws SQLException {
         String sql = "select atividade_id from atividades where horainicio = ? and pessoa_id = ?";
         Integer pegaIdAretornar = 0;
         try (PreparedStatement stm = con.prepareStatement(sql)) {

@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.Timer;
-
 public class Atividade implements Comparable{
 
 

@@ -1,4 +1,4 @@
-package database;
+package bancoDados;
 //Classes necessárias para uso de Banco de dados //
 
 import java.sql.Connection;
