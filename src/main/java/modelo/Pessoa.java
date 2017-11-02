@@ -7,7 +7,7 @@ public class Pessoa {
 
     private String nome;
     private String senha;
-    private int id;
+    private Integer id;
     private List<Atividade> atividades;
     private List<Atividade> atividadesConcluidas;
 
@@ -40,7 +40,7 @@ public class Pessoa {
     public String getSenha() {
         return senha;
     }
-    public int getId() {
+    public Integer getId() {
         return id;
     }
     public void setId(int id) {

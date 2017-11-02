@@ -20,7 +20,7 @@ public class AtividadesConcluidasControle {
             idAVerificar = atividadeDAO.selecionaAtividade(horainicio, pessoa);
             if (idAVerificar != 0){
                 Atividade atividade = new Atividade();
-                atividade = atividadeDAO.retornaAtividade(idAVerificar);
+                atividade = atividadeDAO.buscaAtividadeIndividualmente(idAVerificar);
                 atividadeDAO.concluirAtividade(atividade, pessoa);
                 atividadeDAO.removerAtividade(idAVerificar);
             }

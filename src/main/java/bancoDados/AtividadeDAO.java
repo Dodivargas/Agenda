@@ -85,26 +85,10 @@ public class AtividadeDAO {
         Collections.sort(atividades);
         return atividades;
     }
-    public void buscaAtividadeIndividualmente(Integer idABuscar) throws SQLException{
+    public Atividade buscaAtividadeIndividualmente(Integer idABuscar) throws SQLException{
         String sql = "select nome,horainicio,horafim,tipo from atividades where atividade_id = ?";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setInt(1, idABuscar);
-            stm.execute();
-            try (ResultSet rs = stm.getResultSet()) {
-                rs.next();
-                String nome = rs.getString("nome");
-                String horainicio = rs.getString("horainicio");
-                String horafim  = rs.getString("horafim");
-                String tipo = rs.getString("tipo");
-                Atividade atividade = new Atividade(nome,horainicio,horafim,tipo);
-                System.out.println(atividade.toString());
-            }
-        }
-    }
-    public Atividade retornaAtividade(Integer idARetornar) throws SQLException{
-        String sql = "select nome,horainicio,horafim,tipo from atividades where atividade_id = ?";
-        try (PreparedStatement stm = con.prepareStatement(sql)) {
-            stm.setInt(1, idARetornar);
             stm.execute();
             try (ResultSet rs = stm.getResultSet()) {
                 rs.next();
@@ -117,6 +101,7 @@ public class AtividadeDAO {
             }
         }
     }
+
     public boolean concluirAtividade(Atividade atividade , Pessoa pessoa) throws SQLException {
         String sql = "insert into atividadesConcluidas(pessoa_id,nome,horainicio,horafim,tipo)values(?,?,?,?,?)";
         try (PreparedStatement stm = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -150,19 +135,21 @@ public class AtividadeDAO {
         Collections.sort(atividades);
         return atividades;
     }
-    public void limpaAtividades(Pessoa pessoa) throws SQLException {
+    public boolean limpaAtividades(Pessoa pessoa) throws SQLException {
         String sql = "DELETE FROM atividades WHERE pessoa_id = ?";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setInt(1, pessoa.getId());
             stm.execute();
+            return true;
         }
     }
 
-    public void limpaAtividadesConcluidas(Pessoa pessoa) throws SQLException {
+    public boolean limpaAtividadesConcluidas(Pessoa pessoa) throws SQLException {
         String sql = "DELETE FROM atividadesConcluidas WHERE pessoa_id = ?";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setInt(1, pessoa.getId());
             stm.execute();
+            return true;
         }
     }
 }

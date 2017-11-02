@@ -12,7 +12,7 @@ public class PessoaDAO {
         this.con = ConectaMysql.getConnection();
     }
 
-    public void registraPessoa(Pessoa pessoa) throws SQLException {
+    public boolean registraPessoa(Pessoa pessoa) throws SQLException {
         String sql = "insert into pessoas(nome,senha)values(?,?)";
         try (PreparedStatement stm = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stm.setString(1, pessoa.getNome());
@@ -22,6 +22,7 @@ public class PessoaDAO {
             rs.next();
             int idGerado = rs.getInt(1);
             pessoa.setId(idGerado);
+            return true;
         }
     }
 

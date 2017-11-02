@@ -62,14 +62,15 @@ public class AtividadesControle {
 
     public void buscaAtividade(Pessoa pessoa, String horaInicialAVer) throws SQLException {
         try {
+            Atividade atividade;
             Integer idAVerificar = 0;
             idAVerificar = atividadeDAO.selecionaAtividade(horaInicialAVer, pessoa);
-            atividadeDAO.buscaAtividadeIndividualmente(idAVerificar);
+            atividade = atividadeDAO.buscaAtividadeIndividualmente(idAVerificar);
+            System.out.println(atividade.toString());
         }catch (java.sql.SQLException e){
             throw new AtividadeNaoEncontradaException(e);
         }
     }
-
     public void limparAtividades(Pessoa pessoa) throws SQLException {
         atividadeDAO.limpaAtividades(pessoa);
     }
