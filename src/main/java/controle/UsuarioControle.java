@@ -32,7 +32,6 @@ public class UsuarioControle {
             throw new UsuarioJáExistenteException(e);
         }
     }
-
     public void verificaUsuario(Pessoa pessoa) throws SQLException {
         if(pessoaDAO.verificaPessoa(pessoa.getNome(),pessoa.getSenha()) != 0) {
             menuAtividades.mostraMenuAtividades(pessoaDAO.buscaPessoa(pessoa.getNome()));

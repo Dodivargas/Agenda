@@ -14,6 +14,7 @@ public class Atividade implements Comparable{
 
 
 
+
     public Atividade(String nome, String horaIncio, String horaFim, String tipo, Integer id) {
         this.nome = nome;
         this.horaIncio = horaIncio;
@@ -30,6 +31,10 @@ public class Atividade implements Comparable{
     }
     public Atividade(){
 
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
     public Integer getId() {
         return id;

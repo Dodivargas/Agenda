@@ -4,7 +4,7 @@ import modelo.Pessoa;
 
 import java.util.Scanner;
 
-public class UsuarioVisão {
+public class LeituraUsuario {
 
 
     public static Pessoa verificaUsuario(){

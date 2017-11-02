@@ -14,45 +14,26 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 public class AtividadeDAOTest {
-
-
+    AtividadeDAO daoFalso = mock(AtividadeDAO.class);
     @Test
-    public void configura() throws SQLException {
+    public void criaAtividadeValida() throws SQLException {
         Pessoa pessoa = new Pessoa();
-        pessoa.setId(1);
-
         Atividade atividade = new Atividade();
-        atividade.setNome("nadar");
-        atividade.setHoraIncio("15:00");
-        atividade.setHoraFim("16:00");
-        atividade.setTipo("esporte");
+        when(daoFalso.criaAtividade(atividade,pessoa)).thenReturn(true);
 
-        AtividadeDAO daoFalso = mock(AtividadeDAO.class);
-        when(daoFalso.criaAtividade(atividade, pessoa)).thenReturn(true);
-
-        assertTrue(daoFalso.criaAtividade(atividade, pessoa));
+        assertEquals(daoFalso.criaAtividade(atividade,pessoa),true);
     }
     @Test
-    public void retornaAtividades() throws SQLException {
+    public void editarAtividadeValida() throws SQLException {
         Pessoa pessoa = new Pessoa();
-        pessoa.setId(1);
-
         Atividade atividade = new Atividade();
-        atividade.setNome("nadar");
-        atividade.setHoraIncio("15:00");
-        atividade.setHoraFim("16:00");
-        atividade.setTipo("esporte");
+        atividade.setId(1);
+        when(daoFalso.editarAtividade(atividade,atividade.getId())).thenReturn(true);
 
-        List<Atividade> atividades = Arrays.asList(atividade);
-        pessoa.setAtividades(atividades);
+        assertEquals(daoFalso.editarAtividade(atividade,atividade.getId()),true);
+    }
+    @Test
+    public void selecionaAtividadeValida(){
 
-        AtividadeDAO daoFalso = mock(AtividadeDAO.class);
-        when(daoFalso.listaAtividades(pessoa)).thenReturn(atividades);
-
-        AtividadesControle atividadesControle = new AtividadesControle(daoFalso);
-
-//        atividadesControle.buscaAtividade(pessoa);
-
-        assertEquals(atividades, pessoa.getAtividades());
     }
 }

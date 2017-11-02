@@ -27,7 +27,7 @@ public class AtividadeDAO {
             stm.setString(4, atividade.getHoraFim());
             stm.setString(5, atividade.getTipo());
             stm.execute();
-            return false;
+            return true;
         }
     }
     public void removerAtividade(Integer id) throws SQLException {
@@ -38,7 +38,7 @@ public class AtividadeDAO {
         }
     }
 
-    public int editarAtividade(Atividade atividade, Integer id) throws SQLException {
+    public boolean editarAtividade(Atividade atividade, Integer id) throws SQLException {
         String sql = "UPDATE atividades SET nome = ?, horainicio = ?, horafim = ?,tipo = ? WHERE atividade_id = ?";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setString(1,atividade.getNome());
@@ -47,10 +47,9 @@ public class AtividadeDAO {
             stm.setString(4,atividade.getTipo());
             stm.setInt(5,id);
             stm.execute();
+            return true;
         }
-        return id;
     }
-
     public int selecionaAtividade(String horaInicio, Pessoa pessoa) throws SQLException {
         String sql = "select atividade_id from atividades where horainicio = ? and pessoa_id = ?";
         Integer pegaIdAretornar = 0;

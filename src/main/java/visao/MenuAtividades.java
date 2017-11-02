@@ -8,6 +8,7 @@ import database.AtividadeDAO;
 import database.PessoaDAO;
 import modelo.Atividade;
 import modelo.Pessoa;
+import validações.ValidaHoraAtividade;
 
 
 import java.sql.SQLException;
@@ -20,60 +21,60 @@ public class MenuAtividades {
 
         PessoaDAO pessoaDAO = new PessoaDAO();
         AtividadeDAO atividadeDAO = new AtividadeDAO();
-        AtividadesControle AtividadesControle = new AtividadesControle(atividadeDAO);
+        AtividadesControle atividadesControle = new AtividadesControle(atividadeDAO);
         AtividadesConcluidasControle atividadesConcluidasControle = new AtividadesConcluidasControle(atividadeDAO);
         int opcaoAtividades = 999;
         Scanner s = new Scanner(System.in);
-
         while (opcaoAtividades != 0){
-            System.out.println("\t\n\n###   AGENDA DE ATIVIDADES   ###");
-            System.out.println("\t      ========================="  );
-            System.out.println("\t|     1 - Criar Atividade                      |");
-            System.out.println("\t|     2 - Editar Atividade                     |");
-            System.out.println("\t|     3 - Remover Atividade                    |");
-            System.out.println("\t|     4 - Concluir Atividade                   |");
-            System.out.println("\t|     5 - Listar Atividades                    |");
-            System.out.println("\t|     6 - Listar Atividades Concluidas         |");
-            System.out.println("\t|     7 - Buscar Atividade                     |");
-            System.out.println("\t|     8 - Exclui todas atividades              |");
-            System.out.println("\t|     9 - Exclui todas atividades Concluidas   |");
-            System.out.println("\t|     0 - Sair                                 |");
-            System.out.println("\t       =========================\n");
-            System.out.print("\n");
-            opcaoAtividades = (s.nextInt());
             try {
+                opcaoAtividades = MenuAtividadesVisao.mostraMenuAtividades();
                 switch (opcaoAtividades) {
                     case 1:
                         Atividade atividade = new Atividade();
-                        atividade = AtividadesVisão.pegaAtividadeTeclado();
-                        AtividadesControle.criaAtividade(pessoa,atividade);
+                        atividade = LeituraAtividades.pegaAtividadeTeclado();
+                        if (ValidaHoraAtividade.ValidaHoraAtiviade(atividade.getHoraFim())
+                                && ValidaHoraAtividade.ValidaHoraAtiviade(atividade.getHoraIncio())) {
+                            atividadesControle.criaAtividade(pessoa, atividade);
+                        }else System.out.println("Horario digitado incorretamente!");
                         break;
                     case 2:
-                        Atividade atividade2 = new Atividade();
-                        String horaInicioParaEditar = AtividadesVisão.pegaHoraInicioAtividadeAEditar();
-                        atividade2 = AtividadesVisão.pegaAtividadeTeclado();
-                        AtividadesControle.editaAtividade(pessoa,horaInicioParaEditar,atividade2);
+                        String horaInicioParaEditar = LeituraAtividades.pegaHoraInicioAtividadeAEditar();
+                        if (ValidaHoraAtividade.ValidaHoraAtiviade(horaInicioParaEditar)) {
+                            Atividade atividade2 = new Atividade();
+                            atividade2 = LeituraAtividades.pegaAtividadeTeclado();
+                            atividadesControle.editaAtividade(pessoa, horaInicioParaEditar, atividade2);
+                        }else System.out.println("Horario digitado incorretamente!");
                         break;
                     case 3:
-                        String horaInicioParaRemover = AtividadesVisão.pegaHoraInicioAtividadeARemover();
-                        AtividadesControle.removeAtividade(pessoa,horaInicioParaRemover);
+                        String horaInicioParaRemover = LeituraAtividades.pegaHoraInicioAtividadeARemover();
+                        if (ValidaHoraAtividade.ValidaHoraAtiviade(horaInicioParaRemover)){
+                            atividadesControle.removeAtividade(pessoa,horaInicioParaRemover);
+                        }else System.out.println("Horario digitado incorretamente!");
                         break;
                     case 4:
-                        String horaInicioParaConcluir = AtividadesVisão.pegaHoraInicioAtividadeAConcluir();
-                        atividadesConcluidasControle.concluiAtividade(pessoa,horaInicioParaConcluir);
+                        String horaInicioParaConcluir = LeituraAtividades.pegaHoraInicioAtividadeAConcluir();
+                        if (ValidaHoraAtividade.ValidaHoraAtiviade(horaInicioParaConcluir)) {
+                            atividadesConcluidasControle.concluiAtividade(pessoa, horaInicioParaConcluir);
+                        }else System.out.println("Horario digitado incorretamente!");
                         break;
                     case 5:
-                        AtividadesControle.mostraTodasAtividades(pessoa);
+                        String horaInicioParaVer = LeituraAtividades.pegaHoraInicioAtividadeAMostrar();
+                        if (ValidaHoraAtividade.ValidaHoraAtiviade(horaInicioParaVer)){
+                            atividadesControle.buscaAtividade(pessoa,horaInicioParaVer);
+                            s.nextLine();
+                        }else System.out.println("Horario digitado incorretamente!");
+                        s.nextLine();
                         break;
                     case 6:
-                        atividadesConcluidasControle.listaAtividadesConcluidas(pessoa);
+                        atividadesControle.mostraTodasAtividades(pessoa);
+                        s.nextLine();
                         break;
                     case 7:
-                        String horaInicioParaVer = AtividadesVisão.pegaHoraInicioAtividadeAMostrar();
-                        AtividadesControle.buscaAtividade(pessoa,horaInicioParaVer);
+                        atividadesConcluidasControle.listaAtividadesConcluidas(pessoa);
+                        s.nextLine();
                         break;
                     case 8:
-                        AtividadesControle.limparAtividades(pessoa);
+                        atividadesControle.limparAtividades(pessoa);
                         break;
                     case 9:
                         atividadesConcluidasControle.limparAtividadesConcluidas(pessoa);
@@ -90,6 +91,8 @@ public class MenuAtividades {
                     System.out.println("A atividade não foi encontrada");
                 }else if (e instanceof AtividadeInvalidaException){
                     System.out.println("A atividade não foi registrada");
+                }else if (e instanceof AtividadeInvalidaException){
+                    System.out.println("Não existem atividades para mostrar");
                 }
             }
         }

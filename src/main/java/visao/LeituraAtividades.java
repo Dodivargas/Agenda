@@ -4,7 +4,7 @@ import modelo.Atividade;
 
 import java.util.Scanner;
 
-public class AtividadesVisão {
+public class LeituraAtividades {
 
     public static Atividade pegaAtividadeTeclado(){
         Scanner s = new Scanner(System.in);

@@ -22,24 +22,19 @@ public class MenuUsuario {
         int opcaoUser = 999;
         Scanner s = new Scanner(System.in);
         while (opcaoUser != 0){
-
-            System.out.println("\t\n\n###   AGENDA DE ATIVIDADES   ###\n");
-            System.out.println("\t   =========================    ");
-            System.out.println("\t|  1 - Criar usuario             |");
-            System.out.println("\t|  2 - Entrar com user existente |");
-            System.out.println("\t|  0 - Sair                      |");
-            System.out.println("\t   =========================\n  ");
-            opcaoUser = (s.nextInt());
+            opcaoUser = MenuUsuarioVisao.mostraMenuUsuario();
             try{
                 switch (opcaoUser) {
                     case 1:
                         Pessoa pessoa;
-                        pessoa = UsuarioVisão.verificaUsuario();
-                        menuUsuarioControle.criaUsuario(pessoa);
+                            pessoa = LeituraUsuario.verificaUsuario();
+                            if (ValidaNomeUser.validaNomeUser(pessoa.getNome())){
+                            menuUsuarioControle.criaUsuario(pessoa);
+                            }else System.out.println("Nome de usuario invalido");
                         break;
                     case 2:
                         Pessoa pessoa2;
-                        pessoa2 = UsuarioVisão.verificaUsuario();
+                        pessoa2 = LeituraUsuario.verificaUsuario();
                         menuUsuarioControle.verificaUsuario(pessoa2);
                         break;
                     case 0:
@@ -53,7 +48,6 @@ public class MenuUsuario {
                 if(e instanceof UsuarioJáExistenteException){
                     System.out.println("Esse nome de usuario já está cadastrado");
                 }
-
             }
         }
     }
