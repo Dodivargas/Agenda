@@ -4,9 +4,9 @@ import exceptions.AtividadeNaoEncontradaException;
 import bancoDados.AtividadeDAO;
 import modelo.Atividade;
 import modelo.Pessoa;
-
 import java.sql.SQLException;
 import java.util.List;
+
 
 public class AtividadesConcluidasControle {
 
@@ -14,6 +14,7 @@ public class AtividadesConcluidasControle {
 
     public AtividadesConcluidasControle(AtividadeDAO atividadeDAO) {
         this.atividadeDAO = atividadeDAO;
+
     }
 
     public void concluiAtividade(Pessoa pessoa, String horainicio) throws SQLException {

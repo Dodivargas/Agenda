@@ -1,5 +1,6 @@
-package bancoDados;
+package controle;
 
+import bancoDados.AtividadeDAO;
 import controle.AtividadesControle;
 import exceptions.AtividadeNaoEncontradaException;
 import modelo.Atividade;
@@ -16,6 +17,8 @@ import static org.junit.Assert.*;
 public class AtividadeControleTest {
     AtividadeDAO daoFalso = mock(AtividadeDAO.class);
 
+    AtividadesControle atividadesControle = new AtividadesControle(daoFalso);
+
     @Test
     public void criaAtividade() throws SQLException {
         Pessoa pessoa = new Pessoa();
@@ -27,8 +30,6 @@ public class AtividadeControleTest {
         atividade.setTipo("esporte");
 
         when(daoFalso.criaAtividade(atividade, pessoa)).thenReturn(true);
-
-        AtividadesControle atividadesControle = new AtividadesControle(daoFalso);
 
         assertEquals(atividadesControle.criaAtividade(pessoa, atividade), true);
     }
@@ -49,11 +50,24 @@ public class AtividadeControleTest {
 
         when(daoFalso.listaAtividades(pessoa)).thenReturn(atividades);
 
-        AtividadesControle atividadesControle = new AtividadesControle(daoFalso);
+        Assert.assertEquals(atividadesControle.mostraTodasAtividades(pessoa),atividades);
+    }
 
-        List<Atividade> atividades2 = atividadesControle.mostraTodasAtividades(pessoa);
+    @Test
+    public void buscaAtividade() throws SQLException {
+        Pessoa pessoa = new Pessoa();
+        pessoa.setId(1);
+        Atividade atividade = new Atividade();
+        atividade.setId(1);
+        atividade.setNome("nadar");
+        atividade.setHoraIncio("15:00");
+        atividade.setHoraFim("16:00");
+        atividade.setTipo("esporte");
 
-        Assert.assertEquals(atividades2,atividades);
+        when(daoFalso.selecionaAtividade("15:00",pessoa)).thenReturn(1);
+        when(daoFalso.buscaAtividadeIndividualmente(1)).thenReturn(atividade);
+
+        Assert.assertEquals(atividadesControle.buscaAtividade(pessoa,"15:00"),atividade);
     }
 
 

@@ -11,10 +11,13 @@ public class Pessoa {
     private List<Atividade> atividades;
     private List<Atividade> atividadesConcluidas;
 
+
+
     public Pessoa(String nome, String senha, int id) {
         this.nome = nome;
         this.senha = senha;
         this.id = id;
+
         atividades = new ArrayList<Atividade>();
     }
     public Pessoa(String nome, String senha) {
@@ -37,6 +40,9 @@ public class Pessoa {
     public void setAtividades(List<Atividade> atividades) {
         this.atividades = atividades;
     }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
     public String getSenha() {
         return senha;
     }
@@ -52,4 +58,6 @@ public class Pessoa {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+
 }
