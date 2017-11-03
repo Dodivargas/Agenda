@@ -39,6 +39,7 @@ public class AtividadeDAOTest {
 
         assertEquals(daoFalso.selecionaAtividade(horaInicio,pessoa),atividade.getId());
     }
+
     @Test
     public void listaAtividades() throws SQLException {
         Pessoa pessoa = new Pessoa();
