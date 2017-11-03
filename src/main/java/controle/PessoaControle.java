@@ -10,12 +10,12 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 
-public class UsuarioControle {
+public class PessoaControle {
 
 
     private PessoaDAO pessoaDAO;
 
-    public UsuarioControle(PessoaDAO pessoaDAO) {
+    public PessoaControle(PessoaDAO pessoaDAO) {
         this.pessoaDAO = pessoaDAO;
     }
 
@@ -23,10 +23,10 @@ public class UsuarioControle {
     MenuAtividades menuAtividades = new MenuAtividades();
     Scanner s = new Scanner(System.in);
 
-    public void criaUsuario(Pessoa pessoa) throws SQLException {
+    public Pessoa criaUsuario(Pessoa pessoa) throws SQLException {
         try{
             pessoaDAO.registraPessoa(pessoa);
-            menuAtividades.mostraMenuAtividades(pessoa);
+            return pessoa;
         }catch (java.sql.SQLException e){
             throw new UsuarioJáExistenteException(e);
         }

@@ -18,9 +18,9 @@ public class PessoaDAOTest {
     @Test
     public void registraPessoa() throws SQLException {
         Pessoa pessoa = new Pessoa();
-        when(daoFalso.registraPessoa(pessoa)).thenReturn(true);
+        when(daoFalso.registraPessoa(pessoa)).thenReturn(pessoa);
 
-        assertEquals(daoFalso.registraPessoa(pessoa),true);
+        assertEquals(daoFalso.registraPessoa(pessoa),pessoa);
     }
     @Test
     public void buscaPessoa(){
@@ -36,5 +36,4 @@ public class PessoaDAOTest {
         Assert.assertEquals(pessoa.getId(),daoFalso.verificaPessoa(pessoa.getNome(),pessoa.getSenha()));
 
     }
-
 }

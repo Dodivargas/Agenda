@@ -30,11 +30,12 @@ public class AtividadeDAO {
             return true;
         }
     }
-    public void removerAtividade(Integer id) throws SQLException {
+    public boolean removerAtividade(Integer id) throws SQLException {
         String sql = "DELETE FROM atividades WHERE atividade_id = ?";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setInt(1,id);
             stm.execute();
+            return true;
         }
     }
 
@@ -52,7 +53,7 @@ public class AtividadeDAO {
     }
     public Integer selecionaAtividade(String horaInicio, Pessoa pessoa) throws SQLException {
         String sql = "select atividade_id from atividades where horainicio = ? and pessoa_id = ?";
-        Integer pegaIdAretornar = 0;
+        Integer pegaIdAretornar;
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setString(1,horaInicio);
             stm.setInt(2, pessoa.getId());

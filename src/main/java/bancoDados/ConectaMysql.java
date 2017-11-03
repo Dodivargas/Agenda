@@ -1,5 +1,4 @@
 package bancoDados;
-//Classes necessárias para uso de Banco de dados //
 
 import java.sql.Connection;
 
@@ -10,8 +9,6 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
-
-//Início da classe de conexão//
 
 public class ConectaMysql {
 

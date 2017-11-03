@@ -12,6 +12,8 @@ import validações.ValidaHoraAtividade;
 
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuAtividades {
@@ -30,7 +32,7 @@ public class MenuAtividades {
                 opcaoAtividades = MenuAtividadesVisao.mostraMenuAtividades();
                 switch (opcaoAtividades) {
                     case 1:
-                        Atividade atividade = new Atividade();
+                        Atividade atividade;
                         atividade = LeituraAtividades.pegaAtividadeTeclado();
                         if (ValidaHoraAtividade.ValidaHoraAtiviade(atividade.getHoraFim())
                                 && ValidaHoraAtividade.ValidaHoraAtiviade(atividade.getHoraIncio())) {
@@ -40,7 +42,7 @@ public class MenuAtividades {
                     case 2:
                         String horaInicioParaEditar = LeituraAtividades.pegaHoraInicioAtividadeAEditar();
                         if (ValidaHoraAtividade.ValidaHoraAtiviade(horaInicioParaEditar)) {
-                            Atividade atividade2 = new Atividade();
+                            Atividade atividade2;
                             atividade2 = LeituraAtividades.pegaAtividadeTeclado();
                             atividadesControle.editaAtividade(pessoa, horaInicioParaEditar, atividade2);
                         }else System.out.println("Horario digitado incorretamente!");
@@ -60,17 +62,33 @@ public class MenuAtividades {
                     case 5:
                         String horaInicioParaVer = LeituraAtividades.pegaHoraInicioAtividadeAMostrar();
                         if (ValidaHoraAtividade.ValidaHoraAtiviade(horaInicioParaVer)){
-                            atividadesControle.buscaAtividade(pessoa,horaInicioParaVer);
-                            s.nextLine();
-                        }else System.out.println("Horario digitado incorretamente!");
+                            Atividade atividade2 ;
+                            atividade2 = atividadesControle.buscaAtividade(pessoa,horaInicioParaVer);
+                            System.out.println(atividade2.toString());
+                        }else {
+                            System.out.println("Horario digitado incorretamente!");
+                        }
                         s.nextLine();
                         break;
                     case 6:
-                        atividadesControle.mostraTodasAtividades(pessoa);
+                        List<Atividade> atividades;
+                        atividades = atividadesControle.mostraTodasAtividades(pessoa);
+                        if (atividades.size() > 0){
+                            for (int i = 0; i< atividades.size(); i++){
+                                System.out.println(atividades.get(i));
+                            }
+                        }else{
+                            System.out.println("\n\n Não existem atividades cadastradas para esse pessoa!!!");
+                        }
                         s.nextLine();
                         break;
                     case 7:
-                        atividadesConcluidasControle.listaAtividadesConcluidas(pessoa);
+                        List<Atividade> atividadesConcluidas = atividadesConcluidasControle.listaAtividadesConcluidas(pessoa);
+                        if (pessoa.getAtividadesConcluidas().size() > 0){
+                            for (int i = 0; i< atividadesConcluidas.size(); i++){
+                                System.out.println(atividadesConcluidas.get(i));
+                            }
+                        }else System.out.println("\n\n Não existem atividades concluidas para esse pessoa!!!");
                         s.nextLine();
                         break;
                     case 8:
@@ -89,10 +107,7 @@ public class MenuAtividades {
             } catch (Exception e) {
                 if (e instanceof AtividadeNaoEncontradaException) {
                     System.out.println("A atividade não foi encontrada");
-                }else if (e instanceof AtividadeInvalidaException){
-                    System.out.println("A atividade não foi registrada");
-                }else if (e instanceof AtividadeInvalidaException){
-                    System.out.println("Não existem atividades para mostrar");
+                    s.nextLine();
                 }
             }
         }

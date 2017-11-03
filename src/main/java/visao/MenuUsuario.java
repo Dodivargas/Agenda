@@ -1,10 +1,8 @@
 package visao;
 
-import controle.UsuarioControle;
+import controle.PessoaControle;
 import exceptions.UsuarioJáExistenteException;
-import bancoDados.AtividadeDAO;
 import bancoDados.PessoaDAO;
-import modelo.Atividade;
 import modelo.Pessoa;
 import validações.ValidaNomeUser;
 
@@ -15,10 +13,8 @@ public class MenuUsuario {
 
     public static void mostraMenuUsuario() throws SQLException {
 
-        Atividade atividade = new Atividade();
         PessoaDAO pessoaDAO = new PessoaDAO();
-        AtividadeDAO atividadeDAO = new AtividadeDAO();
-        UsuarioControle menuUsuarioControle = new UsuarioControle(pessoaDAO);
+        PessoaControle menuPessoaControle = new PessoaControle(pessoaDAO);
         int opcaoUser = 999;
         Scanner s = new Scanner(System.in);
         while (opcaoUser != 0){
@@ -27,15 +23,16 @@ public class MenuUsuario {
                 switch (opcaoUser) {
                     case 1:
                         Pessoa pessoa;
-                            pessoa = LeituraUsuario.verificaUsuario();
-                            if (ValidaNomeUser.validaNomeUser(pessoa.getNome())){
-                            menuUsuarioControle.criaUsuario(pessoa);
-                            }else System.out.println("Nome de usuario invalido");
+                        pessoa = LeituraUsuario.verificaUsuario();
+                        if (ValidaNomeUser.validaNomeUser(pessoa.getNome())){
+                            menuPessoaControle.criaUsuario(pessoa);
+                            MenuAtividades.mostraMenuAtividades(pessoa);
+                        }else System.out.println("Nome de usuario invalido");
                         break;
                     case 2:
                         Pessoa pessoa2;
                         pessoa2 = LeituraUsuario.verificaUsuario();
-                        menuUsuarioControle.verificaUsuario(pessoa2);
+                        menuPessoaControle.verificaUsuario(pessoa2);
                         break;
                     case 0:
                         System.exit(0);

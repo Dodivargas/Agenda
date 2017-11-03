@@ -7,6 +7,7 @@ import modelo.Atividade;
 import modelo.Pessoa;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class AtividadesControle {
 
@@ -28,8 +29,7 @@ public class AtividadesControle {
 
     public void editaAtividade(Pessoa pessoa, String horainicioeditar, Atividade atividade){
         try {
-            Integer idAVerificar = 0;
-            idAVerificar = atividadeDAO.selecionaAtividade(horainicioeditar, pessoa);
+            Integer idAVerificar = atividadeDAO.selecionaAtividade(horainicioeditar, pessoa);
             if (idAVerificar != 0) {
                 atividadeDAO.editarAtividade(atividade, idAVerificar);
             }
@@ -40,33 +40,23 @@ public class AtividadesControle {
 
     public void removeAtividade(Pessoa pessoa, String horaInicioParaRemover) throws SQLException {
         try{
-            Integer idARemover = 0;
-            idARemover = atividadeDAO.selecionaAtividade(horaInicioParaRemover, pessoa);
+            Integer idARemover = atividadeDAO.selecionaAtividade(horaInicioParaRemover, pessoa);
             if (idARemover != 0){
                 atividadeDAO.removerAtividade(idARemover);
             }
-
         }catch (java.sql.SQLException e){
             throw new AtividadeNaoEncontradaException(e);
         }
     }
 
-    public void mostraTodasAtividades(Pessoa pessoa) throws SQLException {
+    public List<Atividade> mostraTodasAtividades(Pessoa pessoa) throws SQLException {
         pessoa.setAtividades(atividadeDAO.listaAtividades(pessoa));
-        if (pessoa.getAtividades().size() > 0){
-            for (int i = 0; i< pessoa.getAtividades().size(); i++){
-                System.out.println(pessoa.getAtividades().get(i));
-            }
-        }else System.out.println("\n\n Não existem atividades cadastradas para esse pessoa!!!");
+        return pessoa.getAtividades();
     }
-
-    public void buscaAtividade(Pessoa pessoa, String horaInicialAVer) throws SQLException {
+    public Atividade buscaAtividade(Pessoa pessoa, String horaInicialAVer) throws SQLException {
         try {
-            Atividade atividade;
-            Integer idAVerificar = 0;
-            idAVerificar = atividadeDAO.selecionaAtividade(horaInicialAVer, pessoa);
-            atividade = atividadeDAO.buscaAtividadeIndividualmente(idAVerificar);
-            System.out.println(atividade.toString());
+            Integer idAVerificar = atividadeDAO.selecionaAtividade(horaInicialAVer, pessoa);
+            return atividadeDAO.buscaAtividadeIndividualmente(idAVerificar);
         }catch (java.sql.SQLException e){
             throw new AtividadeNaoEncontradaException(e);
         }

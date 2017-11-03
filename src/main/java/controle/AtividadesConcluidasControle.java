@@ -6,8 +6,10 @@ import modelo.Atividade;
 import modelo.Pessoa;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class AtividadesConcluidasControle {
+
     private AtividadeDAO atividadeDAO;
 
     public AtividadesConcluidasControle(AtividadeDAO atividadeDAO) {
@@ -16,31 +18,21 @@ public class AtividadesConcluidasControle {
 
     public void concluiAtividade(Pessoa pessoa, String horainicio) throws SQLException {
         try{
-            Integer idAVerificar = 0;
-            idAVerificar = atividadeDAO.selecionaAtividade(horainicio, pessoa);
+            Integer idAVerificar = atividadeDAO.selecionaAtividade(horainicio, pessoa);
             if (idAVerificar != 0){
-                Atividade atividade = new Atividade();
-                atividade = atividadeDAO.buscaAtividadeIndividualmente(idAVerificar);
+                Atividade atividade = atividadeDAO.buscaAtividadeIndividualmente(idAVerificar);
                 atividadeDAO.concluirAtividade(atividade, pessoa);
                 atividadeDAO.removerAtividade(idAVerificar);
             }
         }catch (java.sql.SQLException e){
             throw new AtividadeNaoEncontradaException(e);
         }
-
     }
-
-    public void listaAtividadesConcluidas(Pessoa pessoa) throws SQLException {
+    public List<Atividade> listaAtividadesConcluidas(Pessoa pessoa) throws SQLException {
         pessoa.setAtividadesConcluidas(atividadeDAO.listaAtividadesConcluidas(pessoa));
-        if (pessoa.getAtividadesConcluidas().size() > 0){
-            for (int i = 0; i< pessoa.getAtividadesConcluidas().size(); i++){
-                System.out.println(pessoa.getAtividadesConcluidas().get(i));
-            }
-        }else System.out.println("\n\n Não existem atividades concluidas para esse pessoa!!!");
+        return pessoa.getAtividadesConcluidas();
     }
-
     public void limparAtividadesConcluidas(Pessoa pessoa) throws SQLException {
         atividadeDAO.limpaAtividadesConcluidas(pessoa);
     }
-
 }
