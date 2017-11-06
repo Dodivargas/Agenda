@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 public class ConectaMysql {
 
     private static final String driver = "com.mysql.jdbc.Driver";
-    private static final String url = "jdbc:mysql://localhost:3306/agenda";
+    private static final String url = "jdbc:mysql://localhost:3306/teste";
     private static final String user = "root";
     private static final String senha = "dodivargas";
     private static boolean status;

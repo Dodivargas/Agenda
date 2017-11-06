@@ -30,6 +30,7 @@ public class AtividadeDAO {
             return true;
         }
     }
+
     public boolean removerAtividade(Integer id) throws SQLException {
         String sql = "DELETE FROM atividades WHERE atividade_id = ?";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
@@ -51,6 +52,7 @@ public class AtividadeDAO {
             return true;
         }
     }
+
     public Integer selecionaAtividade(String horaInicio, Pessoa pessoa) throws SQLException {
         String sql = "select atividade_id from atividades where horainicio = ? and pessoa_id = ?";
         Integer pegaIdAretornar;
@@ -65,6 +67,7 @@ public class AtividadeDAO {
         }
         return pegaIdAretornar;
     }
+
     public List<Atividade> listaAtividades(Pessoa pessoa) throws SQLException {
 
         List<Atividade> atividades = new ArrayList<>();
@@ -86,6 +89,7 @@ public class AtividadeDAO {
         Collections.sort(atividades);
         return atividades;
     }
+
     public Atividade buscaAtividadeIndividualmente(Integer idABuscar) throws SQLException{
         String sql = "select nome,horainicio,horafim,tipo from atividades where atividade_id = ?";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
@@ -115,6 +119,7 @@ public class AtividadeDAO {
             return true;
         }
     }
+
     public List<Atividade> listaAtividadesConcluidas(Pessoa pessoa) throws SQLException {
 
         List<Atividade> atividades = new ArrayList<>();
@@ -136,6 +141,7 @@ public class AtividadeDAO {
         Collections.sort(atividades);
         return atividades;
     }
+
     public boolean limpaAtividades(Pessoa pessoa) throws SQLException {
         String sql = "DELETE FROM atividades WHERE pessoa_id = ?";
         try (PreparedStatement stm = con.prepareStatement(sql)) {

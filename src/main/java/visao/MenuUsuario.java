@@ -1,7 +1,7 @@
 package visao;
 
 import controle.PessoaControle;
-import exceptions.UsuarioJáExistenteException;
+import exceptions.UsuarioJaExistenteException;
 import bancoDados.PessoaDAO;
 import modelo.Pessoa;
 import validações.ValidaNomeUser;
@@ -42,7 +42,7 @@ public class MenuUsuario {
                         break;
                 }
             }catch (Exception e){
-                if(e instanceof UsuarioJáExistenteException){
+                if(e instanceof UsuarioJaExistenteException){
                     System.out.println("Esse nome de usuario já está cadastrado");
                 }
             }

@@ -1,6 +1,6 @@
 package controle;
 
-import exceptions.UsuarioJáExistenteException;
+import exceptions.UsuarioJaExistenteException;
 import modelo.Pessoa;
 import bancoDados.PessoaDAO;
 import bancoDados.AtividadeDAO;
@@ -28,9 +28,10 @@ public class PessoaControle {
             pessoaDAO.registraPessoa(pessoa);
             return pessoa;
         }catch (java.sql.SQLException e){
-            throw new UsuarioJáExistenteException(e);
+            throw new UsuarioJaExistenteException(e);
         }
     }
+
     public void verificaUsuario(Pessoa pessoa) throws SQLException {
         if(pessoaDAO.verificaPessoa(pessoa.getNome(),pessoa.getSenha()) != 0) {
             menuAtividades.mostraMenuAtividades(pessoaDAO.buscaPessoa(pessoa.getNome()));

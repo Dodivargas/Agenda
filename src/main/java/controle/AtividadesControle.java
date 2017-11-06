@@ -53,6 +53,7 @@ public class AtividadesControle {
         pessoa.setAtividades(atividadeDAO.listaAtividades(pessoa));
         return pessoa.getAtividades();
     }
+
     public Atividade buscaAtividade(Pessoa pessoa, String horaInicialAVer) throws SQLException {
         try {
             Integer idAVerificar = atividadeDAO.selecionaAtividade(horaInicialAVer, pessoa);
@@ -61,6 +62,7 @@ public class AtividadesControle {
             throw new AtividadeNaoEncontradaException(e);
         }
     }
+
     public void limparAtividades(Pessoa pessoa) throws SQLException {
         atividadeDAO.limpaAtividades(pessoa);
     }

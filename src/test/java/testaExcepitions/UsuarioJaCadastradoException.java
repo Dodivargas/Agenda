@@ -2,6 +2,7 @@ package testaExcepitions;
 
 import bancoDados.PessoaDAO;
 import controle.PessoaControle;
+import exceptions.UsuarioJaExistenteException;
 import modelo.Pessoa;
 import org.junit.Test;
 
@@ -20,10 +21,10 @@ public class UsuarioJaCadastradoException {
         PessoaControle pessoaControle = new PessoaControle(daoFalsoPessoa);
         Pessoa pessoa = new Pessoa();
         pessoa.setId(61);
-        when(daoFalsoPessoa.verificaPessoa(pessoa.getNome(),pessoa.getSenha())).thenThrow(exceptions.UsuarioJáExistenteException.class);
+        when(daoFalsoPessoa.verificaPessoa(pessoa.getNome(),pessoa.getSenha())).thenThrow(UsuarioJaExistenteException.class);
         try {
             pessoaControle.verificaUsuario(pessoa);
-        }catch (exceptions.UsuarioJáExistenteException e){
+        }catch (UsuarioJaExistenteException e){
             assertTrue(true);
         }
     }

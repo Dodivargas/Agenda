@@ -29,10 +29,12 @@ public class AtividadesConcluidasControle {
             throw new AtividadeNaoEncontradaException(e);
         }
     }
+
     public List<Atividade> listaAtividadesConcluidas(Pessoa pessoa) throws SQLException {
         pessoa.setAtividadesConcluidas(atividadeDAO.listaAtividadesConcluidas(pessoa));
         return pessoa.getAtividadesConcluidas();
     }
+
     public void limparAtividadesConcluidas(Pessoa pessoa) throws SQLException {
         atividadeDAO.limpaAtividadesConcluidas(pessoa);
     }

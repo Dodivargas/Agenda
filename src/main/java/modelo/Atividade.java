@@ -20,6 +20,7 @@ public class Atividade implements Comparable{
         this.tipo = tipo;
         this.id = id;
     }
+
     public Atividade(String nome, String horaIncio, String horaFim, String tipo) {
         this.horaIncio = horaIncio;
         this.horaFim = horaFim;
@@ -27,6 +28,7 @@ public class Atividade implements Comparable{
         String aux = horaIncio.substring(0,2);
         this.nome = nome;
     }
+
     public Atividade(){
 
     }
@@ -34,6 +36,7 @@ public class Atividade implements Comparable{
     public void setId(Integer id) {
         this.id = id;
     }
+
     public Integer getId() {
         return id;
     }
@@ -91,7 +94,6 @@ public class Atividade implements Comparable{
             return 1;
         }else return 0;
     }
-
 
     @Override
     public boolean equals(Object o) {

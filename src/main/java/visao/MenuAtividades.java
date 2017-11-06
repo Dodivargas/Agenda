@@ -37,27 +37,37 @@ public class MenuAtividades {
                         if (ValidaHoraAtividade.ValidaHoraAtiviade(atividade.getHoraFim())
                                 && ValidaHoraAtividade.ValidaHoraAtiviade(atividade.getHoraIncio())) {
                             atividadesControle.criaAtividade(pessoa, atividade);
+                            System.out.println("Atividade adicionada!");
                         }else System.out.println("Horario digitado incorretamente!");
+                        s.nextLine();
                         break;
                     case 2:
                         String horaInicioParaEditar = LeituraAtividades.pegaHoraInicioAtividadeAEditar();
                         if (ValidaHoraAtividade.ValidaHoraAtiviade(horaInicioParaEditar)) {
+                            System.out.println("Digite abaixo a nova atividade!");
                             Atividade atividade2;
                             atividade2 = LeituraAtividades.pegaAtividadeTeclado();
                             atividadesControle.editaAtividade(pessoa, horaInicioParaEditar, atividade2);
+                            System.out.println("atividade editada!");
                         }else System.out.println("Horario digitado incorretamente!");
+                        s.nextLine();
+
                         break;
                     case 3:
                         String horaInicioParaRemover = LeituraAtividades.pegaHoraInicioAtividadeARemover();
                         if (ValidaHoraAtividade.ValidaHoraAtiviade(horaInicioParaRemover)){
                             atividadesControle.removeAtividade(pessoa,horaInicioParaRemover);
+                            System.out.println("Atividade removida!");
                         }else System.out.println("Horario digitado incorretamente!");
+                        s.nextLine();
                         break;
                     case 4:
                         String horaInicioParaConcluir = LeituraAtividades.pegaHoraInicioAtividadeAConcluir();
                         if (ValidaHoraAtividade.ValidaHoraAtiviade(horaInicioParaConcluir)) {
                             atividadesConcluidasControle.concluiAtividade(pessoa, horaInicioParaConcluir);
+                            System.out.println("Atividade concluida!");
                         }else System.out.println("Horario digitado incorretamente!");
+                        s.nextLine();
                         break;
                     case 5:
                         String horaInicioParaVer = LeituraAtividades.pegaHoraInicioAtividadeAMostrar();
@@ -93,9 +103,13 @@ public class MenuAtividades {
                         break;
                     case 8:
                         atividadesControle.limparAtividades(pessoa);
+                        System.out.println("Todas atividades foram removidas");
+                        s.nextLine();
                         break;
                     case 9:
                         atividadesConcluidasControle.limparAtividadesConcluidas(pessoa);
+                        System.out.println("Todas atividades concluidas foram removidas");
+                        s.nextLine();
                         break;
                     case 0:
                         System.exit(0);
@@ -106,7 +120,7 @@ public class MenuAtividades {
                 }
             } catch (Exception e) {
                 if (e instanceof AtividadeNaoEncontradaException) {
-                    System.out.println("A atividade não foi encontrada");
+                    System.out.println("A atividade não foi encontrada!");
                     s.nextLine();
                 }
             }
