@@ -1,6 +1,6 @@
 package visao;
 
-import exceptions.AtividadeInvalidaException;
+
 import exceptions.AtividadeNaoEncontradaException;
 import controle.AtividadesConcluidasControle;
 import controle.AtividadesControle;
@@ -12,7 +12,6 @@ import validações.ValidaHoraAtividade;
 
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 

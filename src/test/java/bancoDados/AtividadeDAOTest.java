@@ -1,9 +1,8 @@
 package bancoDados;
 
-import controle.AtividadesControle;
+
 import modelo.Atividade;
 import modelo.Pessoa;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.sql.*;

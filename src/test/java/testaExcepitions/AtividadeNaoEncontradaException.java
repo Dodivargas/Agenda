@@ -1,7 +1,6 @@
 package testaExcepitions;
 
 import bancoDados.AtividadeDAO;
-import bancoDados.PessoaDAO;
 import controle.AtividadesControle;
 import modelo.Atividade;
 import modelo.Pessoa;

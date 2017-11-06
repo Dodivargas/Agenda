@@ -1,8 +1,6 @@
 package controle;
 
 import bancoDados.AtividadeDAO;
-import controle.AtividadesControle;
-import exceptions.AtividadeNaoEncontradaException;
 import modelo.Atividade;
 import modelo.Pessoa;
 import org.junit.Assert;

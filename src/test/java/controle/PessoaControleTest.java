@@ -1,20 +1,13 @@
 package controle;
 
-import bancoDados.AtividadeDAO;
+
 import bancoDados.PessoaDAO;
-import controle.AtividadesControle;
-import exceptions.AtividadeNaoEncontradaException;
-import modelo.Atividade;
 import modelo.Pessoa;
 import org.junit.Assert;
 import org.junit.Test;
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
+
 
 public class PessoaControleTest {
 

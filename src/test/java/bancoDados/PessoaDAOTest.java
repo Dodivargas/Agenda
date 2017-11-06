@@ -1,14 +1,11 @@
 package bancoDados;
 
-import controle.AtividadesControle;
-import modelo.Atividade;
+
 import modelo.Pessoa;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 

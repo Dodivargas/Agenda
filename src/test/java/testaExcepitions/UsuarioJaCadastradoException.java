@@ -5,9 +5,7 @@ import controle.PessoaControle;
 import exceptions.UsuarioJaExistenteException;
 import modelo.Pessoa;
 import org.junit.Test;
-
 import java.sql.SQLException;
-
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
